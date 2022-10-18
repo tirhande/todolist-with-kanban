@@ -6,19 +6,17 @@ import { TItemProps } from "../../interface/interface";
 
 const Item: React.FC<TItemProps> = ({index, item}) => {
   return (
-    <Article>
-      <Draggable draggableId={item.id} index={index}>
-          {(provided) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            >
-              {item.content}
-            </div>
-          )}
-        </Draggable>
-    </Article>
+    <Draggable draggableId={item.id} index={index}>
+      {(provided) => (
+        <Article
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {item.content}
+        </Article>
+      )}
+    </Draggable>
   )
 }
 

@@ -1,22 +1,3 @@
-export interface ISection {
-  isAdding?: boolean;
-}
-
-export interface IItems {
-	[key: string] : {
-    id: string;
-    content: string;
-  }
-}
-
-export interface IColumns {
-  [key: string] : {
-    id: string;
-    title: string;
-    itemIds: string[];
-  }
-}
-
 export type SliceState = {
   items: IItems;
   columns: IColumns;
@@ -37,3 +18,32 @@ export type TItemProps = {
     content: string;
   }
 };
+
+export interface ISection {
+  isAdding?: boolean;
+}
+
+export interface IItems {
+	[key: string] : {
+    id: string;
+    content: string;
+  }
+}
+
+export interface IColumn {
+  id: string;
+  title: string;
+  itemIds: string[];
+}
+
+export interface IColumns {
+  [key: string] : IColumn;
+}
+
+export interface IMoveItem {
+  start: IColumn;
+  finish: IColumn;
+  srcIdx: number;
+  destIdx: number;
+  draggableId: string;
+}

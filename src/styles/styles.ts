@@ -21,7 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot);
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
-        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2) format('woff2'),
+        // url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2) format('woff2'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff) format('woff'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf) format('truetype');
   }
@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 700;
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
-        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'),
+        // url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff) format('woff'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf) format('truetype');
 `;
@@ -42,6 +42,13 @@ export const Main = styled.main`
   align-items: flex-start;
   padding: 0.5em 0;
 `;
+export const KanbanWrapper = styled.div`
+  display: flex;
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
+`;
+
 const CommonSection = css`
   width: 250px;
   border-radius: 5px;
@@ -69,7 +76,17 @@ const CommonSection = css`
 export const Section = styled.section`
   ${CommonSection}
   background: #eaecef;
+
+  textarea {
+    width: 100%;
+    height: 56px;
+    resize: none;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+  }
 `;
+
 export const AddSection = styled.section<ISection>`
   ${CommonSection}
   background: #${({ isAdding }) => isAdding ? "eaecef" : "a4a9ac"};
@@ -111,13 +128,35 @@ export const Article = styled.article`
 `;
 export const Footer = styled.footer`
   color: #777d8c;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  &:hover {
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+  }
+  div.add_item {
+    margin: 0 -5px;
+    padding-top: 5px;
+  }
+  div.new_item {
+    padding: 5px;
+  }
+  div.new_item:hover {
     background-color: #dbdce1;
     color: #1c2a47;
     font-weight: bold;
+  }
+  svg {
+    font-size: 16px;
+  }
+  > svg {
+    margin: 0 5px;
   }
 `;

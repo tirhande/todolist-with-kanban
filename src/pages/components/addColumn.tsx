@@ -11,11 +11,16 @@ const AddColumn: React.FC = () => {
 
   const columns = useAppSelector(({todos}) => todos.columns);
   const columnOrder = useAppSelector(({todos}) => todos.columnOrder);
-
-  const onAddInput = (e: React.ChangeEvent<HTMLInputElement>) => setColumnTitle(e.target.value);
+  
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => setColumnTitle(e.target.value);
   const onAddColumn = () => {
+    const maxNum = columnOrder.reduce((acc, cur) => {
+      const tmpCur = Number(cur.replace("column-", ""));
+      return (acc > tmpCur ? acc : tmpCur);
+    }, 0);
+
     const newColumn = {
-      id: "column-test",
+      id: "column-" + maxNum + 1,
       title: columnTitle,
       itemIds: []
     };
@@ -30,7 +35,7 @@ const AddColumn: React.FC = () => {
     <AddSection isAdding={isAdding}>
       {isAdding ? 
         <div>
-          <input type="text" placeholder="Enter list title..." value={columnTitle} onChange={onAddInput}/>
+          <input type="text" placeholder="Enter list title..." value={columnTitle} onChange={onChangeInput}/>
           <div>
             <button onClick={onAddColumn}>Add list</button>
             <span onClick={_ => setIsAdding(false)}><CloseRoundedIcon /></span>

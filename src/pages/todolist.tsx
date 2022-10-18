@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Main, Section, Header, Footer, Article } from "../styles/styles";
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import React from "react";
+import { Main } from "../styles/styles";
 import AddColumn from "./components/addColumn";
 import ColumnContainer from "./components/columnContainer";
 
