@@ -44,6 +44,7 @@ export const Main = styled.main`
 `;
 export const KanbanWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
   @media (max-width: 720px) {
     flex-direction: column;
   }
@@ -76,14 +77,20 @@ const CommonSection = css`
 export const Section = styled.section`
   ${CommonSection}
   background: #eaecef;
-
   textarea {
-    width: 100%;
+    width: 98%;
     height: 56px;
     resize: none;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 8px;
+    color: #1c2a47;
+    box-shadow: 0 3px 1px #d5d5d9;
+    margin-top: 5px;
+  }
+
+  div {
+    padding-left: 5px;
   }
 `;
 
@@ -100,9 +107,10 @@ export const AddSection = styled.section<ISection>`
     align-items: center;
     margin-top: 5px;
   }
-  div span {
+  div svg {
     cursor: pointer;
     color: #475068;
+    margin-left: 0.1em;
   }
 `;
 export const Header = styled.header`
@@ -112,25 +120,74 @@ export const Header = styled.header`
   font-weight: bold;
   color: #1c2a47;
   padding: 5px;
-  cursor: grab;
-
+  
+  form {
+    width: 80%;
+  }
+  h3 {
+    width: 100%;
+    cursor: pointer;
+    padding-left: 3px;
+  }
   span {
     cursor: pointer;
   }
+  input {
+    width: 100%;
+    height: 26px;
+    cursor: pointer;
+
+    font-size: 1em;
+    font-weight: bold;
+  }
+`;
+
+export const ItemSection = styled.section`
+  padding-bottom: 0.3em;
+  max-height: 180px;
+  overflow-y: auto;
 `;
 export const Article = styled.article`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  height: 30px;
+
   background: #fff;
   border-radius: 5px;
   margin: 0.5em 0px;
-  padding: 8px;
   color: #1c2a47;
   box-shadow: 0 2px 1px #d5d5d9;
+  word-break: break-word;
+  width: 98%;
+
+  &:last-child {
+    margin: 0;
+  }
+  form {
+    width: 100%;
+  }
+  span {
+    padding: 8px;
+    font-size: 1em;
+  }
+  svg {
+    width: 12%;
+    font-size: 16px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+  }
 `;
 export const Footer = styled.footer`
   color: #777d8c;
   padding: 5px;
   border-radius: 5px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -144,8 +201,12 @@ export const Footer = styled.footer`
   div.add_item {
     margin: 0 -5px;
     padding-top: 5px;
+    svg {
+      margin-left: 0.1em;
+    }
   }
   div.new_item {
+    cursor: pointer;
     padding: 5px;
   }
   div.new_item:hover {
@@ -154,9 +215,10 @@ export const Footer = styled.footer`
     font-weight: bold;
   }
   svg {
-    font-size: 16px;
+    font-size: 20px;
   }
   > svg {
     margin: 0 5px;
+    cursor: pointer;
   }
 `;
