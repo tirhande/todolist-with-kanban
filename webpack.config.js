@@ -2,7 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require("path");
 const webpack = require('webpack');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+ 
 module.exports = (env, argv) => {
   const prod = argv.mode === "production";
   
@@ -31,6 +32,11 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: 'bundle-report.html',
+        openAnalyzer: false,
+      }),
       new webpack.ProvidePlugin({
         React: "react",
       }),
