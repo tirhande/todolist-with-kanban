@@ -7,8 +7,10 @@
 ## Description
 > Todo List를 Kanvan 형태와 Drag&Drop 기능으로 구현한 프로젝트입니다.
 
-gif, git-page 삽입 예정
+## Demo
+[GitPage](https://tirhande.github.io/todolist-with-kanban/)  
 
+![데모 이미지](https://github.com/tirhande/test_repo/blob/257440f583f592fa89502a6e80fffa1d9522ee4e/todolist_dragdrop.png "데모 이미지")
 <br>
 
 # Getting Started
