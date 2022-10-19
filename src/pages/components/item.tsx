@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setItems } from "../../redux/reducer/todoSlice";
-import { Article } from "../../styles/styles";
+import { Article, ArticleDiv } from "../../styles/styles";
 import { Draggable } from 'react-beautiful-dnd';
 import { TItemProps } from "../../interface/interface";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const Item: React.FC<TItemProps> = ({index, item}) => {
   const dispatch = useAppDispatch();
@@ -16,19 +18,21 @@ const Item: React.FC<TItemProps> = ({index, item}) => {
   const [isEdit, setIsEdit] = useState(false);
   const onEditItem = () => setIsEdit(true);
   
-  const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setItemText(value);
-  }
+  const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setItemText(e.target.value);
   const onItemTextChange = (e: React.FormEvent) => {
     e.preventDefault();
     if(itemText === "") {
       alert("내용을 입력해주세요.");
       return;
     }
-    dispatch(setItems(items.map(val => val.id === item.id ? {...val, content: itemText} : val)));
+    dispatch(setItems({...items, [item.id]: {...item, content: itemText}}));
     setIsEdit(false);
-  }
+  };
+
+  const onEditCancel = () => {
+    setIsEdit(false);
+    setItemText(item.content);
+  };
 
   return (
     <Draggable draggableId={item.id} index={index}>
@@ -41,14 +45,19 @@ const Item: React.FC<TItemProps> = ({index, item}) => {
           onMouseOut={() => setIsHover(false)}
         >
           {isEdit ? 
-            <form onSubmit={onItemTextChange}>
-              <input type="text" placeholder="Enter a title for this card..." value={itemText} onChange={onTextChange} autoFocus />
-            </form>
-          : <>
-            <span>
+            <ArticleDiv>
+              <textarea placeholder="Enter a title for this card..." value={itemText} onChange={onTextChange} autoFocus />
+              <div>
+                <span onClick={onItemTextChange}><DoneIcon /></span>
+                <span onClick={onEditCancel}><CloseRoundedIcon /></span>
+              </div>
+            </ArticleDiv>
+          : 
+          <>
+            <h3>
               {item.content}
-            </span>
-            {isHover ? <EditRoundedIcon onClick={onEditItem} /> : <></>}
+            </h3>
+            {isHover ? <span onClick={onEditItem}><EditRoundedIcon /></span> : <></>}
           </>}
         </Article>
       )}

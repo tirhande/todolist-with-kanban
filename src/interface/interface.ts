@@ -1,5 +1,5 @@
 export type SliceState = {
-  items: IItems[];
+  items: IItems;
   columns: IColumns;
   columnOrder: string[];
 };
@@ -28,12 +28,13 @@ export type TMenuProps = {
 
 export interface ISection {
   isAdding?: boolean;
-  isDragging?: boolean;
 }
 
 export interface IItems {
-  id: string;
-  content: string;
+  [key: string] : {
+    id: string;
+    content: string;
+  }
 }
 
 export interface IColumn {

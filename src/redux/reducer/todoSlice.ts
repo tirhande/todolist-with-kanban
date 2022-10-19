@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SliceState } from "../../interface/interface";
 
 const initialState: SliceState = {
-  items: [],
+  items: {},
   columns: {},
   columnOrder: [],
 };

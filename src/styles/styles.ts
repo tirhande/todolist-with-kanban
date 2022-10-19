@@ -14,14 +14,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: #858b90;
   }
-
   @font-face {
     font-family: 'Nanum Gothic';
     font-style: normal;
     font-weight: 400;
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot);
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
-        // url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2) format('woff2'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff) format('woff'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf) format('truetype');
   }
@@ -32,7 +30,6 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 700;
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
     src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
-        // url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff) format('woff'),
         url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf) format('truetype');
 `;
@@ -50,6 +47,17 @@ export const KanbanWrapper = styled.div`
   }
 `;
 
+const Span = css`
+  span {
+    height: 24px;
+    color: #777d8c;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  span:hover {
+    background: #dcdce2;
+  }
+`;
 const CommonSection = css`
   width: 250px;
   border-radius: 5px;
@@ -68,7 +76,7 @@ const CommonSection = css`
   }
   input {
     width: 100%;
-    height: 28px;
+    height: 30px;
     border: none;
     border-radius: 3px;
     padding: 0 3px;
@@ -85,12 +93,12 @@ export const Section = styled.section`
     border-radius: 8px;
     padding: 8px;
     color: #1c2a47;
-    box-shadow: 0 3px 1px #d5d5d9;
-    margin-top: 5px;
+    // box-shadow: 0 3px 1px #d5d5d9;
+    // margin-top: 5px;
   }
 
   div {
-    padding-left: 5px;
+    // padding: 2px 0 0 5px;
   }
 `;
 
@@ -102,16 +110,14 @@ export const AddSection = styled.section<ISection>`
     color: #fff;
     padding: 10px;
   }
+
   div div {
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    justify-content: space-between;
+    margin-top: 8px;
   }
-  div svg {
-    cursor: pointer;
-    color: #475068;
-    margin-left: 0.1em;
-  }
+  ${Span}
 `;
 export const Header = styled.header`
   display: flex;
@@ -120,21 +126,25 @@ export const Header = styled.header`
   font-weight: bold;
   color: #1c2a47;
   padding: 5px;
-  
+  position: relative;
+
   form {
-    width: 80%;
+    width: 90%;
   }
   h3 {
     width: 100%;
     cursor: pointer;
     padding-left: 3px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  span {
-    cursor: pointer;
-  }
+  ${Span}
+
   input {
     width: 100%;
-    height: 26px;
+    height: 24px;
     cursor: pointer;
 
     font-size: 1em;
@@ -143,17 +153,30 @@ export const Header = styled.header`
 `;
 
 export const ItemSection = styled.section`
-  padding-bottom: 0.3em;
-  max-height: 180px;
+  max-height: 155px;
   overflow-y: auto;
+  padding: 4px 2px;
+  
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #c2c2c2;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7d7d7d;
+  }
+  ::-webkit-scrollbar-track {
+    background: inherit;
+  }
 `;
 export const Article = styled.article`
   display: flex;
   align-items: center;
   justify-content: space-between;
   
-  height: 30px;
-
   background: #fff;
   border-radius: 5px;
   margin: 0.5em 0px;
@@ -161,64 +184,80 @@ export const Article = styled.article`
   box-shadow: 0 2px 1px #d5d5d9;
   word-break: break-word;
   width: 98%;
+  min-height: 30px;
 
+  &:hover {
+    background: #f4f5f7;
+  }
+  &:first-child {
+    margin-top: 0;
+  }
   &:last-child {
     margin: 0;
   }
-  form {
-    width: 100%;
+  h3 {
+    min-height: 30px;
+    padding: 8px;
+    font-size: 1em;
   }
+
+  ${Span}
   span {
-    padding: 8px;
-    font-size: 1em;
+    height: 20px;
+    margin-right: 5px;
   }
-  svg {
-    width: 12%;
-    font-size: 16px;
-    padding-right: 10px;
-    cursor: pointer;
+  span svg {
+    font-size: 20px;
   }
-  input {
+`;
+export const ArticleDiv = styled.div`
+  position: relative;
+  width: 100%;
+  height: 50px;
+  padding-right: 12%;
+  textarea {
     width: 100%;
-    padding: 8px;
+    height: 100%;
     font-size: 1em;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  ${Span}
+  span {
+    height: 20px;
   }
 `;
 export const Footer = styled.footer`
-  color: #777d8c;
-  padding: 5px;
+  padding: 5px 5px 5px 0;
   border-radius: 5px;
+`;
+
+export const AddItemDiv = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  div {
-    width: 100%;
+  > div {
     display: flex;
     align-items: center;
-    border-radius: 3px;
-  }
-  div.add_item {
-    margin: 0 -5px;
-    padding-top: 5px;
-    svg {
-      margin-left: 0.1em;
-    }
-  }
-  div.new_item {
     cursor: pointer;
     padding: 5px;
+    border-radius: 3px;
   }
-  div.new_item:hover {
+  > div:hover {
     background-color: #dbdce1;
     color: #1c2a47;
     font-weight: bold;
   }
-  svg {
-    font-size: 20px;
-  }
-  > svg {
-    margin: 0 5px;
-    cursor: pointer;
-  }
+  
+  ${Span}
 `;

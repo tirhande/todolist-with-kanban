@@ -25,7 +25,7 @@ const AddColumn: React.FC = () => {
     }, 0);
 
     const newColumn = {
-      id: "column-" + maxNum + 1,
+      id: "column-" + (maxNum + 1),
       title: columnTitle,
       itemIds: []
     };
@@ -50,13 +50,13 @@ const AddColumn: React.FC = () => {
     <AddSection id="addColumn" isAdding={isAdding}>
       {isAdding ? 
         <div>
-          <>
-            <input type="text" placeholder="Enter list title..." value={columnTitle} onChange={onChangeInput} onBlur={onClose} autoFocus required/>
-            <div>
-              <button onMouseDown={(e) => e.preventDefault()} onClick={onAddColumn}>Add list</button>
+          <input type="text" placeholder="Enter list title..." value={columnTitle} onChange={onChangeInput} onBlur={onClose} autoFocus required/>
+          <div>
+            <button onMouseDown={(e) => e.preventDefault()} onClick={onAddColumn}>Add list</button>
+            <span>
               <CloseRoundedIcon onClick={onClose} />
-            </div>
-          </>
+            </span>
+          </div>
         </div>
       : <div onClick={() => setIsAdding(true)}>
           <p>+ Add another list</p>
