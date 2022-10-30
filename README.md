@@ -9,8 +9,9 @@
 
 ## Demo
 [GitPage](https://tirhande.github.io/todolist-with-kanban/)  
+<br>
+<img width="850" alt="todolist_dragdrop" src="https://user-images.githubusercontent.com/74575497/198879269-3302fc20-9c68-4f31-b158-b648f86dbfd5.png">
 
-![데모 이미지](https://github.com/tirhande/test_repo/blob/257440f583f592fa89502a6e80fffa1d9522ee4e/todolist_dragdrop.png "데모 이미지")
 <br>
 
 # Getting Started
